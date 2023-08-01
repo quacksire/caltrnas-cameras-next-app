@@ -1,10 +1,7 @@
 "use client"
-import {Checkbox} from "@/components/ui/checkbox";
 import {cn} from "@/lib/utils";
-import {CheckedState} from "@radix-ui/react-menu";
-import {useCallback, useEffect, useState} from "react";
+import { useEffect, useState} from "react";
 import {Button} from "@/components/ui/button";
-import {bool} from "prop-types";
 
 
 export default function CheckboxItem({id, content, func, className, checked} : {id: string, content: any, func?: ((checked: boolean) => void) | undefined , className?: string, checked?: boolean }) {
