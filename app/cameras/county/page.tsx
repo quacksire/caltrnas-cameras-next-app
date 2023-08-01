@@ -5,7 +5,7 @@ export default function ChooseCounty({params} : {params : { choice: string}}) {
 
     return (
         <div>
-            <CountyPicker prefix={`/cameras`} />
+            <CountyPicker />
         </div>
     )
 

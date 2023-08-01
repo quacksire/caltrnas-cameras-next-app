@@ -6,7 +6,7 @@ export default function ChooseRoute({params} : {params : { choice: string}}) {
 
     return (
         <div>
-            <RoutePicker prefix={`/cameras`} />
+            <RoutePicker />
         </div>
     )
 
