@@ -1,6 +1,7 @@
 'use server'
 
-import CmsCard from "@/components/cmsCard";
+import {ScrollArea} from "@/components/ui/scroll-area";
+import CmsCard from "@/components/cards/cmsCard";
 
 export default async function CmsGrid({district, route, county} : {district? : string, route? : string, county? : string}) {
     let res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/cms`)
@@ -21,11 +22,18 @@ export default async function CmsGrid({district, route, county} : {district? : s
 
 
     return (
-                <div className={'grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full'}>
-                    {cmsSigns.map((signData: any) => {
+        <>
+            <ScrollArea className={'h-full w-full m-5'}>
+                <div className={'grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gow-end-auto m-2'}>
+                    {cmsSigns.map((cms: any, index: number) => {
                         return (
-                            <CmsCard cms={signData} />
-                        )})}
+                            <CmsCard cms={cms} key={index} hideBlank={true} />
+                        )
+                    } )}
                 </div>
+            </ScrollArea>
+
+        </>
+
     )
 }
