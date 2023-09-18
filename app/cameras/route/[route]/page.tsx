@@ -3,6 +3,8 @@ import {routes} from "@/lib/lists";
 
 import CameraGrid from "@/components/rsc/cameraGrid";
 
+
+export const dynamic = 'force-dynamic';
 export async function generateStaticParams() {
     return routes.map((route) => ({
         route: `${route}`
