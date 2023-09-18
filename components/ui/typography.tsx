@@ -8,9 +8,9 @@ export function TypographyH1({children, className} : {children: React.ReactNode,
     )
 }
 
-//{children, className} : {children: React.ReactNode, className: string}
+//{children, className} : {children: React.ReactNode, className?: string}
 
-export function TypographyH2({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyH2({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <h2 className={cn("scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0", className)}>
             {children}
@@ -18,7 +18,7 @@ export function TypographyH2({children, className} : {children: React.ReactNode,
     )
 }
 
-export function TypographyH3({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyH3({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <h3 className={cn("scroll-m-20 text-2xl font-semibold tracking-tight", className)}>
             {children}
@@ -26,7 +26,7 @@ export function TypographyH3({children, className} : {children: React.ReactNode,
     )
 }
 
-export function TypographyH4({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyH4({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <h4 className={cn("scroll-m-20 text-xl font-semibold tracking-tight", className)}>
             {children}
@@ -34,7 +34,7 @@ export function TypographyH4({children, className} : {children: React.ReactNode,
     )
 }
 
-export function TypographyParagraph({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyParagraph({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <p className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}>
             {children}
@@ -42,7 +42,7 @@ export function TypographyParagraph({children, className} : {children: React.Rea
     )
 }
 
-export function TypographyBlockquote({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyBlockquote({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)}>
             {children}
@@ -50,14 +50,14 @@ export function TypographyBlockquote({children, className} : {children: React.Re
     )
 }
 
-export function TypographyInlineCode({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyInlineCode({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <code className={cn("relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold", className)}>
             {children}
         </code>
     )
 }
-export function TypographyLead({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyLead({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <p className={cn("text-xl text-muted-foreground", className)}>
             {children}
@@ -65,19 +65,19 @@ export function TypographyLead({children, className} : {children: React.ReactNod
     )
 }
 
-export function TypographyLarge({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyLarge({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <div className={cn("text-lg font-semibold", className)}>{children}</div>
     )
 }
 
-export function TypographySmall({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographySmall({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <small className={cn("text-sm font-medium leading-none", className)}>{children}</small>
     )
 }
 
-export function TypographyMuted({children, className} : {children: React.ReactNode, className: string}) {
+export function TypographyMuted({children, className} : {children: React.ReactNode, className?: string}) {
     return (
         <p className={cn("text-sm text-muted-foreground", className)}>{children}</p>
     )

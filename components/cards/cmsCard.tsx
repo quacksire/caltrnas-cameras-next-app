@@ -2,10 +2,13 @@
 import {useEffect, useState} from "react";
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
 import LocationHeader from "@/components/cards/LocationHeader";
+import { AlertTriangleIcon} from "lucide-react";
+import {AlertTriangle} from "lucide-react"
+
 export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: boolean }) {
 
     const [page, setPage] = useState(0);
-    console.log(cms)
+    //console.log(cms)
 
 
     useEffect(() => {
@@ -27,25 +30,35 @@ export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: bo
 
 
     return (
-        <Card className={'max-w-330 max-h-100 m-3 xs:w-100'} key={cms.location.locationName}>
+        <Card className={'max-w-330 h-100 m-3 xs:w-75'} key={cms.location.locationName}>
             <LocationHeader location={cms.location} />
             <CardContent className={'flex justify-center w-full'}>
 
-                {cms.message.display != "Blank" ? (
-                    <p className="py-10 w-96 bg-black text-center leading-5 border-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-500">
-                        {page === 0 ? cms.message.phase1.phase1Line1 || "." : cms.message.phase2.phase2Line1 || "."}
+                {cms.message.display != "Blank" && (
+                    cms.message.phase1.phase1Line1 != "Not Reported" &&
+                    cms.message.phase1.phase1Line2 != "Not Reported" &&
+                    cms.message.phase1.phase1Line3 != "Not Reported"
+
+                ) ? (
+                    <p className="py-10 w-96 bg-black text-center leading-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-500">
+                        {page === 0 ? cms.message.phase1.phase1Line1 || "‍" : cms.message.phase2.phase2Line1 || "‍"}
                         <br />
-                        {page === 0 ? cms.message.phase1.phase1Line2 || "." : cms.message.phase2.phase2Line2 || "."}
+                        {page === 0 ? cms.message.phase1.phase1Line2 || "‍" : cms.message.phase2.phase2Line2 || "‍"}
                         <br />
-                        {page === 0 ? cms.message.phase1.phase1Line3 || "." : cms.message.phase2.phase2Line3 || "."}
+                        {page === 0 ? cms.message.phase1.phase1Line3 || "‍" : cms.message.phase2.phase2Line3 || "‍"}
                     </p>
                 ) : (
-                    <p className="py-10 w-96 text-center leading-5 font-medium text-muted-foreground rounded-2xl shadow-black">
-                        This sign
-                        <br />
-                        is
-                        <br />
-                        currently blank.
+                    <p className="py-10 w-96 bg-gray-200 text-center items-center text-gray-500 leading-5  font-medium rounded-2xl shadow-foreground border-2">
+                        <div>
+                            ‍
+                        </div>
+                        <div>
+                            This sign is blank.
+                        </div>
+                        <div>
+                            ‍
+                        </div>
+
                     </p>
                 )}
             </CardContent>

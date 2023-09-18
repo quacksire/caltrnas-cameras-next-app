@@ -9,7 +9,7 @@ import Choices from "@/components/home/choices";
 
 export default function Home() {
   return (
-      <MaxWidthWrapper className="text-center align-middle h-full">
+      <MaxWidthWrapper className="text-center align-middle h-full pt-20">
               <div className="border-gray-300 m-5">
                   <TypographyH1 className={"m-3"}>
                       <Balancer>

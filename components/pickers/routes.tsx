@@ -63,7 +63,7 @@ export default function RoutePicker() {
                 <div className={'flex-1 h-screen'}>
                     <ScrollArea className={'h-full w-full m-5'}>
                         {(interstateSelection || usSelection || stateSelection) && (
-                            <div className={'m-5 grid sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-5'}>
+                            <div className={'m-5 grid xs:grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5'}>
                                 {routes.map((route, index) => {
 
                                     if (

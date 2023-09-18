@@ -5,6 +5,8 @@ import {ThemeProvider} from "@/components/theme-provider";
 import Link from "next/link";
 import {HomeIcon, InfoIcon} from "lucide-react";
 import Header from "@/components/header";
+import { Toaster } from "@/components/ui/toaster"
+import {Providers} from "@/components/provider";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,13 +19,16 @@ export default function DefaultLayout({children} : {children: React.ReactNode}) 
   return (
       <html lang="en">
       <body className={'relative flex min-h-screen flex-col'}>
-          <ThemeProvider attribute="class">
-              <Header />
+          <Providers>
+              <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                  <Header />
 
-              <section>
-                  {children}
-              </section>
-          </ThemeProvider>
+                  <section>
+                      {children}
+                  </section>
+                  <Toaster />
+              </ThemeProvider>
+          </Providers>
       </body>
       </html>
 

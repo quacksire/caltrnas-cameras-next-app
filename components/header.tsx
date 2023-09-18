@@ -1,10 +1,12 @@
 'use client'
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
-import {HomeIcon, InfoIcon} from "lucide-react";
+import {Button} from "@nextui-org/react";
+import {HomeIcon, InfoIcon, MapIcon} from "lucide-react";
 import {usePathname} from "next/navigation";
 import {useEffect, useState} from "react";
+import {Spacer} from "@nextui-org/react";
 import {urlToDisplay} from "@/lib/utils";
+import {TypographyH2, TypographyLead, TypographyMuted} from "@/components/ui/typography";
 
 export default function Header() {
     const pathname = usePathname()
@@ -12,7 +14,6 @@ export default function Header() {
 
     useEffect(() => {
         setPath(pathname)
-        console.log(pathname)
     }, [pathname]);
 
 
@@ -26,12 +27,13 @@ export default function Header() {
     //                                     </d
 
     return (
-        <header className="sticky top-3 z-40 w-full bg-transparent">
-            <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0 backdrop-blur-xl">
+        <header className="absolute z-40 w-full z-45 flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0 backdrop-blur-xl">
                 <div className="flex flex-1 items-center justify-end space-x-4">
                     <nav className="absolute left-10 top-5 items-center space-x-2">
                         <Link href={"/"}>
-                            <Button variant={'ghost'}> <HomeIcon size={32}></HomeIcon> </Button>
+                            <Button variant={'light'} size={'lg'}>  <TypographyMuted>
+                                Home
+                            </TypographyMuted> </Button>
                         </Link>
                         {path.split('/').map((path, index) => {
                             if (path === '/' || index == 0) return null
@@ -40,7 +42,7 @@ export default function Header() {
 
                             let pathName = urlToDisplay(path)
 
-                            if (pathName === 'Cms') pathName = 'Change'
+                            if (pathName === 'Cms') pathName = 'CMS'
 
 
 
@@ -48,9 +50,16 @@ export default function Header() {
 
                             return (
                                 <>
-                                    {' / '}
-                                    <Link href={path_up_until_current}> {/* Capitalize the first letter of the path*/}
-                                        <Button variant={'ghost'}> {pathName} </Button>
+                                    <Button variant={'light'} isDisabled className={'pointer-events-none'}> <TypographyMuted>
+                                        {' / '}
+
+                                    </TypographyMuted> </Button>
+                                    <Link href={path_up_until_current} className={'ml-1 mr-1'}> {/* Capitalize the first letter of the path*/}
+                                        <Button variant={'light'}>
+                                            <TypographyMuted>
+                                            {pathName}
+                                            </TypographyMuted>
+                                            </Button>
                                     </Link>
                                 </>
 
@@ -58,12 +67,18 @@ export default function Header() {
                         })}
                     </nav>
                     <nav className="absolute right-10 top-5">
-                        <Link href={"/"}>
-                            <Button variant={'ghost'}> <InfoIcon size={32}></InfoIcon> </Button>
+                        {
+                            path === '/map' ? null : (
+                                <Link href={"/map"} className={''}>
+                                    <Button variant={'light'} isIconOnly> <MapIcon size={16}></MapIcon> </Button>
+                                </Link>
+                            )
+                        }
+                        <Link href={"/"} className={'m-1'}>
+                            <Button variant={'light'} isIconOnly> <InfoIcon size={16}></InfoIcon> </Button>
                         </Link>
                     </nav>
                 </div>
-            </div>
         </header>
     )
 }
