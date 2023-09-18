@@ -5,7 +5,7 @@ import CmsCard from "@/components/cards/cmsCard";
 import CameraCard from "@/components/cards/cameraCard";
 
 export default async function CameraGrid({district, route, county} : {district? : string, route? : string, county? : string}) {
-    let res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/`, { cache: 'no-store' })
+    let res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/`)
     let data = await res.json()
     let cams = data.map((item: {
         cctv: any}) => item.cctv)
