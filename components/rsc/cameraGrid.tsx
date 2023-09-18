@@ -26,7 +26,7 @@ export default async function CameraGrid({district, route, county} : {district? 
     return (
         <>
             <ScrollArea className={'h-full w-full m-5'}>
-                <div className={'grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gow-end-auto m-2'}>
+                <div className={'grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 m-2 w-full'}>
                     {cams.map((cam: any, index: number) => {
                         return (
                             <CameraCard camera={cam} key={index} hideBlank={true} />

@@ -15,9 +15,9 @@ export function ChoiceCardTemplate({title = '', description = '', available = fa
 
     return (
         <Link href={(link && available) ? `/${link}` : '#'} about={available ? "" : "Coming Soon!"} draggable={false}
-              className={'h-max w-full'}>
+              className={'h-full w-full'}>
             <Card
-                className={available ? "w-50 h-min-20 m-2 cursor-pointer hover:shadow-md hover:bg-muted" : "w-50 h-min-20 m-2 h-min cursor-not-allowed hover:shadow-md hover:bg-muted"}>
+                className={available ? "w-50 h-min-20 m-2 cursor-pointer hover:shadow-md hover:bg-muted border-1 border-foreground-100" : "border-1 border-foreground-100 w-50 h-min-20 m-2 h-min cursor-not-allowed hover:shadow-md hover:bg-muted"}>
                 <CardHeader>
                     {title && (
                         <CardTitle>
@@ -46,7 +46,7 @@ export default function Choices() {
 
 
     return (
-        <div className={"m-5 grid grid-cols-3 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-center"}>
+        <div className={"m-3 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-center"}>
             {choicesArray.map((choice, index) => (
                 <ChoiceCardTemplate key={index} title={choice.title} description={choice.description} link={choice.link} available={choice.available} />
             ))}

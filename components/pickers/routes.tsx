@@ -1,6 +1,6 @@
 'use client'
 import {TypographyH3, TypographyLead} from "@/components/ui/typography";
-import {Button} from "@/components/ui/button";
+import {Button} from "@nextui-org/button";
 import CheckboxItem from "@/components/CheckboxItem";
 import {useEffect, useState} from "react";
 import {routes} from "@/lib/lists";
@@ -26,7 +26,13 @@ export default function RoutePicker() {
             setUSSelection(true)
             setUSSelection(true)
             setStateSelection(true)
-        }, 1000)
+        }, 5)
+
+        setTimeout(() => {
+            setUSSelection(false)
+            setUSSelection(false)
+            setStateSelection(false)
+        }, 10)
     }, []);
 
     return (
@@ -36,7 +42,7 @@ export default function RoutePicker() {
                 <TypographyH3>
                     <b>Routes</b>
                 </TypographyH3>
-                <div className={"m-5 grid grid-cols-3"}>
+                <div className={"m-5 grid grid-cols-1 md:grid-cols-3"}>
                     <CheckboxItem id={'interstate'} content={'Interstate Highways'} className={'m-2'} checked={!interstateSelection} func={(checkedState) => setInterstateSelection(!checkedState)} />
                     <CheckboxItem id={'us'} content={'US Highways'} className={'m-2'} checked={!usSelection} func={(checkedState) => setUSSelection(!checkedState)} />
                     <CheckboxItem id={'state'} content={'State Route'} className={'m-2'} checked={!stateSelection} func={(checkedState) => setStateSelection(!checkedState)} />
@@ -61,9 +67,9 @@ export default function RoutePicker() {
 
 
                 <div className={'flex-1 h-screen'}>
-                    <ScrollArea className={'h-full w-full m-5'}>
+                    <ScrollArea className={'h-full w-full'}>
                         {(interstateSelection || usSelection || stateSelection) && (
-                            <div className={'m-5 grid xs:grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-5'}>
+                            <div className={'grid xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full'}>
                                 {routes.map((route, index) => {
 
                                     if (
@@ -72,11 +78,10 @@ export default function RoutePicker() {
                                         (stateSelection && route.includes('SR-'))
                                     ) {
                                         return (
-                                            <Link href={`route/${route}`} key={index}>
-                                                <Button key={index} className={'m-2 h-fit'} variant={'ghost'}
+                                            <Link href={`route/${route}`} key={index} className={'m-3'}>
+                                                <Button key={index} className={'h-fit'} variant={'ghost'}
                                                 >
                                                     <Shield route={route} height={100} width={100} />
-
                                                 </Button>
                                             </Link>
                                         )

@@ -1,7 +1,7 @@
 "use client"
 import {cn} from "@/lib/utils";
 import { useEffect, useState} from "react";
-import {Button} from "@/components/ui/button";
+import {Button} from "@nextui-org/button";
 
 
 export default function CheckboxItem({id, content, func, className, checked} : {id: string, content: any, func?: ((checked: boolean) => void) | undefined , className?: string, checked?: boolean }) {
@@ -27,7 +27,7 @@ export default function CheckboxItem({id, content, func, className, checked} : {
     }, []);
 
     return (
-        <Button className={cn('items-center space-x-2 w-full', className)} variant={check ? 'default' : "outline"} onClick={() => {
+        <Button className={cn('items-center space-x-2 w-full', className)} variant={check ? 'flat' : "light"} onClick={() => {
             setCheck(!check)
             if (func) {
                 check ? func(true) : func(false)

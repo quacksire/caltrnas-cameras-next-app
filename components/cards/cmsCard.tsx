@@ -40,7 +40,7 @@ export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: bo
                     cms.message.phase1.phase1Line3 != "Not Reported"
 
                 ) ? (
-                    <p className="py-10 w-96 bg-black text-center leading-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-500">
+                    <p className="py-10 w-96 bg-black text-center leading-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-700 border-2 border-foreground-100">
                         {page === 0 ? cms.message.phase1.phase1Line1 || "‍" : cms.message.phase2.phase2Line1 || "‍"}
                         <br />
                         {page === 0 ? cms.message.phase1.phase1Line2 || "‍" : cms.message.phase2.phase2Line2 || "‍"}
@@ -48,7 +48,7 @@ export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: bo
                         {page === 0 ? cms.message.phase1.phase1Line3 || "‍" : cms.message.phase2.phase2Line3 || "‍"}
                     </p>
                 ) : (
-                    <p className="py-10 w-96 bg-gray-200 text-center items-center text-gray-500 leading-5  font-medium rounded-2xl shadow-foreground border-2">
+                    <p className="py-10 w-96 bg-accent text-center items-center text-gray-500 leading-5  font-medium rounded-2xl shadow-foreground border-2 border-foreground-100">
                         <div>
                             ‍
                         </div>
