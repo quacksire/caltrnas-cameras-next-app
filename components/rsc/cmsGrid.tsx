@@ -4,7 +4,9 @@ import {ScrollArea} from "@/components/ui/scroll-area";
 import CmsCard from "@/components/cards/cmsCard";
 
 export default async function CmsGrid({district, route, county} : {district? : string, route? : string, county? : string}) {
-    let res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/cms`)
+    let res = await fetch(`https://caltrans-cameras.quacksire.workers.dev/cms`, {
+        next: { revalidate: 3600 },
+    })
     let data = await res.json()
     let cmsSigns = data.map((item: { cms?: any }) => item.cms)
 

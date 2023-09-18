@@ -60,7 +60,7 @@ export default function Header() {
                                 </NavbarItem>
 
                             {path.split('/').map((path, index) => {
-                                if (path === '/' || index == 0 || index == 1) return null
+                                if (path === '/' || index == 0) return null
 
                                 let path_up_until_current = pathname.split('/').slice(0, index + 1).join('/')
 
