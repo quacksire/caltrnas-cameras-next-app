@@ -12,7 +12,11 @@ export async function generateStaticParams() {
 export default function RoutePage({ params }: { params: { district: string }}) {
     return (
         <div>
-            <TypographyLarge>District {params.district}</TypographyLarge>
+            {
+                /*
+                <TypographyLarge>District {params.district}</TypographyLarge>
+                 */
+            }
             <CmsGrid district={params.district} />
         </div>
     )

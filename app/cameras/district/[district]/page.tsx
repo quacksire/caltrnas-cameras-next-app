@@ -8,10 +8,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function RoutePage({ params }: { params: { district: string }}) {
+export default async function RoutePage({ params }: { params: { district: string }}) {
     return (
         <div>
-            <h1>{decodeURI(params.district)}</h1>
             <CameraGrid district={decodeURI(params.district)} />
         </div>
     )

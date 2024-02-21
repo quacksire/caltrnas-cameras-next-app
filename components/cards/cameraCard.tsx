@@ -60,18 +60,21 @@ export default function CameraCard({ camera, hideBlank } : { camera : any, hideB
         return () => clearInterval(tick.current)
     }, [historyScroll])
 
+    let previewsAvail = camera.imageData.static.length - 3
+
+
     return (
-        <Card className={'max-w-330 max-h-100 m-3 xs:w-100'} key={camera.location.locationName}>
+        <Card className={'max-w-330 max-h-100 m-3 w-100'} key={camera.location.locationName}>
             <LocationHeader location={camera.location} />
             <CardContent className={'justify-center w-full'}>
                 {!hasLive && (
                     <div onMouseEnter={() => setHistoryScroll(true)} onMouseLeave={() => setHistoryScroll(false)}>
-                        <Image className={'rounded-md shadow-md shadow-gray-500 bg-gray-500'} alt={camera.location.locationName} src={src} key={Date.now()} width={320} height={260} />
+                        <Image className={'rounded-md shadow-md shadow-gray-500 bg-foreground'} alt={camera.location.locationName} src={src} key={Date.now()} width={320} height={260} />
                     </div>
                 )}
                 {hasLive && (
                     <div>
-                        <Image className={'rounded-md shadow-md shadow-gray-500 bg-gray-500'} alt={camera.location.locationName} src={`${src}?${Date.now()}`} key={Date.now()} width={320} height={260} />
+                        <Image className={'rounded-md shadow-md shadow-gray-500 bg-foreground'} alt={camera.location.locationName} src={`${src}?${Date.now()}`} key={Date.now()} width={320} height={260} />
                     </div>
                 )}
             </CardContent>

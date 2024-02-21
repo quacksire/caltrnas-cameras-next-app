@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
- 
+import {districtNames} from "@/lib/lists";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -13,6 +14,11 @@ export function urlToDisplay(input: string) {
 
     /// replace '-' in the string with a space, and capitalize the letter next to a space
     output = output.replace(/-/g, ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+  }
+
+  //@ts-ignore
+  if (!isNaN(input)) {
+    output = districtNames[parseInt(input) - 1]
   }
 
     return output

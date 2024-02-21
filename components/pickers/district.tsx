@@ -18,10 +18,10 @@ export default function DistrictPicker() {
     return (
         <div>
 
-            <div className={'min-h-screen flex'}>
-                <div className={'flex-1 h-screen'}>
-                    <ScrollArea className={'h-full w-full m-5'}>
-                        <div className={'grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gow-end-auto m-2'}>
+            <div className={'flex'}>
+                <div className={'flex-1'}>
+                    <>
+                        <div className={'grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gow-end-auto m-2'}>
 
                         {districts.map((district, index) => {
                             return (
@@ -29,7 +29,7 @@ export default function DistrictPicker() {
                             )
                         })}
                         </div>
-                    </ScrollArea>
+                    </>
 
 
                 </div>

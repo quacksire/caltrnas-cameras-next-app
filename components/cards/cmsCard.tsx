@@ -40,7 +40,7 @@ export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: bo
                     cms.message.phase1.phase1Line3 != "Not Reported"
 
                 ) ? (
-                    <p className="py-10 w-96 bg-black text-center leading-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-700 border-2 border-foreground-100">
+                    <p className="py-10 w-96 bg-black border-black text-center leading-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-700 border-2 border-foreground-100">
                         {page === 0 ? cms.message.phase1.phase1Line1 || "‍" : cms.message.phase2.phase2Line1 || "‍"}
                         <br />
                         {page === 0 ? cms.message.phase1.phase1Line2 || "‍" : cms.message.phase2.phase2Line2 || "‍"}

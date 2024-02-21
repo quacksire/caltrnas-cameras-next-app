@@ -11,10 +11,9 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function RoutePage({ params }: { params: { route: string }}) {
+export default async function RoutePage({ params }: { params: { route: string }}) {
     return (
         <div>
-            <h1>{params.route}</h1>
             <CameraGrid route={params.route} />
         </div>
     )

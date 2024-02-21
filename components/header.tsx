@@ -16,6 +16,7 @@ import {
     NavbarMenu,
     NavbarMenuItem
 } from "@nextui-org/navbar";
+import {districtNames} from "@/lib/lists";
 
 export default function Header() {
     const pathname = usePathname()
@@ -39,7 +40,7 @@ export default function Header() {
     //                                     </d
 
     return (
-        <Navbar shouldHideOnScroll className={'w-screen'}>
+        <Navbar shouldHideOnScroll className={'w-screen mb-3'}>
                 <div className="flex flex-1 items-center justify-end space-x-4">
                     <nav className="absolute left-10 top-5 items-center space-x-2">
                         <NavbarMenuToggle
@@ -73,7 +74,7 @@ export default function Header() {
 
 
                                 return (
-                                    <NavbarItem>
+                                    <NavbarItem key={`${path}-${index}`}>
                                         <Button variant={'light'} isIconOnly isDisabled className={'pointer-events-none w-min'} key={path_up_until_current}> <TypographyMuted>
                                             {'/'}
                                         </TypographyMuted> </Button>
@@ -127,13 +128,6 @@ export default function Header() {
 
                     </nav>
                     <NavbarItem className={'mt-1 sm:mt-5'}>
-                        {
-                            path === '/map' ? null : (
-                                <Link href={"/map"} className={'mt-1'}>
-                                    <Button variant={'light'} isIconOnly> <MapIcon /> </Button>
-                                </Link>
-                            )
-                        }
                         <Link href={"/"} className={'m-1'}>
                             <Button variant={'light'} isIconOnly> <InfoIcon /> </Button>
                         </Link>

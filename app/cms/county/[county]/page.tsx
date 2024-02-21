@@ -13,7 +13,9 @@ export async function generateStaticParams() {
 export default function RoutePage({ params }: { params: { county: string }}) {
     return (
         <div>
+            {/*
             <TypographyLarge>{urlToDisplay(decodeURI(params.county))}</TypographyLarge>
+            */}
             <CmsGrid county={urlToDisplay(decodeURI(params.county))} />
         </div>
     )

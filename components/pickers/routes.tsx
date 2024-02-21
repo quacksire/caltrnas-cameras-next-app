@@ -12,9 +12,9 @@ import Link from "next/link";
 export default function RoutePicker() {
 
 
-    const [interstateSelection, setInterstateSelection] = useState(true)
-    const [usSelection, setUSSelection] = useState(true)
-    const [stateSelection, setStateSelection] = useState(true)
+    const [interstateSelection, setInterstateSelection] = useState(false)
+    const [usSelection, setUSSelection] = useState(false)
+    const [stateSelection, setStateSelection] = useState(false)
 
 
     useEffect(() => {
@@ -22,17 +22,7 @@ export default function RoutePicker() {
     }, [interstateSelection, usSelection, stateSelection])
 
     useEffect(() => {
-        setTimeout(() => {
-            setUSSelection(true)
-            setUSSelection(true)
-            setStateSelection(true)
-        }, 5)
 
-        setTimeout(() => {
-            setUSSelection(false)
-            setUSSelection(false)
-            setStateSelection(false)
-        }, 10)
     }, []);
 
     return (

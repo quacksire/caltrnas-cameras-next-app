@@ -13,7 +13,9 @@ export default async function RoutePage({ params }: { params: { route: string }}
 
     return (
         <div>
+            {/*
             <TypographyLarge>{params.route}</TypographyLarge>
+            */}
             <CmsGrid route={params.route} />
         </div>
     )
