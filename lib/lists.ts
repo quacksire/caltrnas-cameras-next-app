@@ -259,77 +259,79 @@ const choicesArray = [
 ]
 
 
-const featureArrayMaker = () => {
-    let JSONList = [];
-    for (let i = 0; i < counties.length; i++) {
-        let countyObj = {};
-
-        countyObj["county"] = counties[i];
-        countyObj["district"] = countyDistricts[i];
-        countyObj["features"] = [];
-        if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(countyDistricts[i])) {
-            countyObj["features"].push("chainControl");
-        }
-        if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(countyDistricts[i])) {
-            countyObj["features"].push("cms");
-        }
-        if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(countyDistricts[i])) {
-            countyObj["features"].push("lcs");
-        }
-        if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(countyDistricts[i])) {
-            countyObj["features"].push("cctv");
-        }
-        if ([3, 8, 11, 12].includes(countyDistricts[i])) {
-            countyObj["features"].push("travelTimes");
-        }
-        if ([2, 3, 6, 8, 9, 10].includes(countyDistricts[i])) {
-            countyObj["features"].push("weather");
-        }
-
-        JSONList.push(countyObj);
-    }
-
-    return JSONList
-}
-
-const districtArrayMaker = () => {
-    let JSONList = [];
-    for (let i = 0; i < districts.length; i++) {
-        let countyObj = {};
-            countyDistricts.forEach((district, index) => {
-                if (district - 1 === i) {
-                    countyObj["counties"] += `${counties[index]}, `
-                }
-            })
-
-        countyObj["name"] = districtNames[i];
-        countyObj["features"] = [];
-        if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(i + 1)) {
-            countyObj["features"].push("chainControl");
-        }
-        if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(i + 1)) {
-            countyObj["features"].push("cms");
-        }
-        if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(i + 1)) {
-            countyObj["features"].push("lcs");
-        }
-        if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(i + 1)) {
-            countyObj["features"].push("cctv");
-        }
-        if ([3, 8, 11, 12].includes(i + 1)) {
-            countyObj["features"].push("travelTimes");
-        }
-        if ([2, 3, 6, 8, 9, 10].includes(i + 1)) {
-            countyObj["features"].push("weather");
-        }
-
-        JSONList.push(countyObj);
-    }
-
-
-
-    return JSONList
-}
+/**
+ * const featureArrayMaker = () => {
+ *     let JSONList = [];
+ *     for (let i = 0; i < counties.length; i++) {
+ *         let countyObj = {};
+ *
+ *         countyObj["county"] = counties[i];
+ *         countyObj["district"] = countyDistricts[i];
+ *         countyObj["features"] = [];
+ *         if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(countyDistricts[i])) {
+ *             countyObj["features"].push("chainControl");
+ *         }
+ *         if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(countyDistricts[i])) {
+ *             countyObj["features"].push("cms");
+ *         }
+ *         if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(countyDistricts[i])) {
+ *             countyObj["features"].push("lcs");
+ *         }
+ *         if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(countyDistricts[i])) {
+ *             countyObj["features"].push("cctv");
+ *         }
+ *         if ([3, 8, 11, 12].includes(countyDistricts[i])) {
+ *             countyObj["features"].push("travelTimes");
+ *         }
+ *         if ([2, 3, 6, 8, 9, 10].includes(countyDistricts[i])) {
+ *             countyObj["features"].push("weather");
+ *         }
+ *
+ *         JSONList.push(countyObj);
+ *     }
+ *
+ *     return JSONList
+ * }
+ *
+ * const districtArrayMaker = () => {
+ *     let JSONList = [];
+ *     for (let i = 0; i < districts.length; i++) {
+ *         let countyObj = {};
+ *             countyDistricts.forEach((district, index) => {
+ *                 if (district - 1 === i) {
+ *                     countyObj["counties"] += `${counties[index]}, `
+ *                 }
+ *             })
+ *
+ *         countyObj["name"] = districtNames[i];
+ *         countyObj["features"] = [];
+ *         if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(i + 1)) {
+ *             countyObj["features"].push("chainControl");
+ *         }
+ *         if ([1, 2, 3, 6, 7, 8, 9, 10, 11].includes(i + 1)) {
+ *             countyObj["features"].push("cms");
+ *         }
+ *         if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(i + 1)) {
+ *             countyObj["features"].push("lcs");
+ *         }
+ *         if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(i + 1)) {
+ *             countyObj["features"].push("cctv");
+ *         }
+ *         if ([3, 8, 11, 12].includes(i + 1)) {
+ *             countyObj["features"].push("travelTimes");
+ *         }
+ *         if ([2, 3, 6, 8, 9, 10].includes(i + 1)) {
+ *             countyObj["features"].push("weather");
+ *         }
+ *
+ *         JSONList.push(countyObj);
+ *     }
+ *
+ *
+ *
+ *     return JSONList
+ * }
+ */
 
 const featureArray = [
     {
@@ -937,4 +939,4 @@ const featureArray = [
 
 
 
-export {districts, counties, countyDistricts, routes, choicesArray, featureArray, districtNames, districtHqs, districtHqAddresses, districtsCenter, districtArrayMaker, districtHqPhoneNumbers}
+export {districts, counties, countyDistricts, routes, choicesArray, featureArray, districtNames, districtHqs, districtHqAddresses, districtsCenter, districtHqPhoneNumbers}

@@ -8,9 +8,9 @@ import {
 } from "@/lib/lists";
 
 
-export async function GET(request: Request, { params }: { params: { district: string} }) {
+export async function GET(request: Request, {params}: { params: { district: string } }) {
     if (!params.district) {
-        return {status: 404};
+        return new Response('Missing parameters', {status: 400})
     }
     let base_api_url = new URL(request.url).origin
 
@@ -20,7 +20,7 @@ export async function GET(request: Request, { params }: { params: { district: st
     let features = []
 
     //check if the district is 1,2,3,4,5,6,7,8,9,10,11, or 12, and return an error if it is not
-    if (!district || ![1,2,3,4,5,6,7,8,9,10,11,12].includes(parseInt(district))) {
+    if (!district || ![1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].includes(parseInt(district))) {
         return new Response(JSON.stringify({error: "Thats not a valid district"}), {status: 400})
     }
 
@@ -36,7 +36,7 @@ export async function GET(request: Request, { params }: { params: { district: st
     }
 
     // RWIS
-    if ([2,3,6,8,9,10].includes(parseInt(district))) {
+    if ([2, 3, 6, 8, 9, 10].includes(parseInt(district))) {
         features.push('rwis')
     }
 

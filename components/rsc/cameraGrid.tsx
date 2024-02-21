@@ -1,14 +1,10 @@
 "use server"
-
-import {ScrollArea} from "@/components/ui/scroll-area";
-import CmsCard from "@/components/cards/cmsCard";
 import CameraCard from "@/components/cards/cameraCard";
 import {FrownIcon} from "lucide-react";
 import {Spacer} from "@nextui-org/spacer";
 import {Button} from "@nextui-org/button";
 import Link from "next/link";
-import {counties, countyDistricts} from "@/lib/lists";
-import {urlToDisplay} from "@/lib/utils";
+import {getDataForSpecific} from "@/lib/fetchData";
 
 
 export default async function CameraGrid({district, route, county} : {district? : string, route? : string, county? : string}) {
@@ -18,15 +14,14 @@ export default async function CameraGrid({district, route, county} : {district? 
     let cams = []
     try {
         if (district) {
-            cams = await fetch('http://localhost:3000/api/d/' + district + '/cctv').then(res => res.json())
+            //cams = await fetch('/api/d/' + district + '/cctv').then(res => res.json())
+            cams = await getDataForSpecific(Number(district), 'cctv', `district-${district}`)
         }
         if (route) {
-            console.log(`http://localhost:3000/api/d/1/cctv/route-${route}`)
-            cams = await fetch(`http://localhost:3000/api/d/1/cctv/route-${route}`).then(res => res.json())
+            cams = await getDataForSpecific(1, 'cctv', `route-${route}`)
         }
         if (county) {
-            console.log(county)
-            cams = await fetch(`http://localhost:3000/api/d/1/cctv/county-${county}`).then(res => res.json())
+            cams = await getDataForSpecific(1, 'cctv', `county-${county}`)
         }
     } catch (e) {
         console.log(e)
@@ -52,7 +47,7 @@ export default async function CameraGrid({district, route, county} : {district? 
 
 
 
-    console.log(cams.length)
+    //console.log(cams.length)
 
     if (cams?.length === 0) {
         return (
@@ -76,7 +71,7 @@ export default async function CameraGrid({district, route, county} : {district? 
     return (
         <>
             <>
-                <div className={'grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 m-2 items-center'}>
+                <div className={'grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'}>
                     {cams.map((cam: any, index: number) => {
                         return (
                             <CameraCard camera={cam} key={index} hideBlank={true} />

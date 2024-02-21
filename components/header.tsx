@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import {Button} from "@nextui-org/react";
+import {Button} from "@/components/ui/button";
 import {HomeIcon, InfoIcon, MapIcon} from "lucide-react";
 import {usePathname} from "next/navigation";
 import {useEffect, useState} from "react";
@@ -54,7 +54,7 @@ export default function Header() {
                         <NavbarContent className="hidden sm:flex" justify="start">
                                 <NavbarItem>
                                     <Link href={"/"}>
-                                        <Button variant={'light'} size={'lg'} isIconOnly>  <TypographyMuted>
+                                        <Button variant={'ghost'} size={'lg'}>  <TypographyMuted>
                                             <HomeIcon className={'text-foreground'} />
                                         </TypographyMuted> </Button>
                                     </Link>
@@ -75,11 +75,11 @@ export default function Header() {
 
                                 return (
                                     <NavbarItem key={`${path}-${index}`}>
-                                        <Button variant={'light'} isIconOnly isDisabled className={'pointer-events-none w-min'} key={path_up_until_current}> <TypographyMuted>
+                                        <Button variant={'ghost'} disabled className={'pointer-events-none w-min'} key={path_up_until_current}> <TypographyMuted>
                                             {'/'}
                                         </TypographyMuted> </Button>
                                         <Link href={path_up_until_current} key={`/${path_up_until_current}/`}> {/* Capitalize the first letter of the path*/}
-                                            <Button variant={'light'}>
+                                            <Button variant={'ghost'}>
                                                 <TypographyMuted>
                                                     {pathName}
                                                 </TypographyMuted>
@@ -93,7 +93,7 @@ export default function Header() {
                         <NavbarMenu>
                             <NavbarMenuItem className={'w-full'}>
                             <Link href={"/"} className={'w-full content-center'}>
-                                <Button variant={'light'} size={'lg'} >  <TypographyMuted>
+                                <Button variant={'ghost'} size={'lg'} >  <TypographyMuted>
                                     <HomeIcon />
                                 </TypographyMuted> </Button>
                             </Link>
@@ -114,7 +114,7 @@ export default function Header() {
                                 return (
                                     <NavbarMenuItem key={path_up_until_current}>
                                         <Link href={path_up_until_current} key={`/${path_up_until_current}/`}> {/* Capitalize the first letter of the path*/}
-                                            <Button variant={'light'} size={'lg'}>
+                                            <Button variant={'ghost'} size={'lg'}>
                                                 <TypographyMuted>
                                                     {pathName}
                                                 </TypographyMuted>
@@ -129,7 +129,7 @@ export default function Header() {
                     </nav>
                     <NavbarItem className={'mt-1 sm:mt-5'}>
                         <Link href={"/"} className={'m-1'}>
-                            <Button variant={'light'} isIconOnly> <InfoIcon /> </Button>
+                            <Button variant={'ghost'}> <InfoIcon /> </Button>
                         </Link>
                     </NavbarItem>
                 </div>

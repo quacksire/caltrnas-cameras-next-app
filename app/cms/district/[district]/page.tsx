@@ -1,7 +1,5 @@
-
 import {districts} from "@/lib/lists";
 import CmsGrid from "@/components/rsc/cmsGrid";
-import {TypographyLarge} from "@/components/ui/typography";
 
 export async function generateStaticParams() {
     return districts.map((district) => ({
@@ -9,7 +7,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function RoutePage({ params }: { params: { district: string }}) {
+export default function RoutePage({params}: { params: { district: string } }) {
     return (
         <div>
             {
@@ -17,7 +15,7 @@ export default function RoutePage({ params }: { params: { district: string }}) {
                 <TypographyLarge>District {params.district}</TypographyLarge>
                  */
             }
-            <CmsGrid district={params.district} />
+            <CmsGrid district={params.district}/>
         </div>
     )
 }

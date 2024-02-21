@@ -64,7 +64,7 @@ export default function CameraCard({ camera, hideBlank } : { camera : any, hideB
 
 
     return (
-        <Card className={'max-w-330 max-h-100 m-3 w-100'} key={camera.location.locationName}>
+        <Card className={'max-w-350 max-h-100 m-3 w-100'} key={camera.location.locationName}>
             <LocationHeader location={camera.location} />
             <CardContent className={'justify-center w-full'}>
                 {!hasLive && (

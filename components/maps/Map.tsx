@@ -1,3 +1,4 @@
+/*
 'use client'
 import {
     MapContainer,
@@ -16,7 +17,7 @@ import "leaflet-defaulticon-compatibility";
 import React, {SetStateAction, useCallback, useEffect, useRef, useState, ReactDOM, useMemo} from "react";
 import L, {geoJSON, map} from "leaflet";
 import DistrictGeoJSON from '../../lib/geojson/Caltrans_Districts.json'
-import {counties, districtArrayMaker, districtNames, districtsCenter} from "@/lib/lists";
+import {counties, districtNames, districtsCenter} from "@/lib/lists";
 import {booleanContains, centroid} from "@turf/turf";
 import CameraCard from "@/components/cards/cameraCard";
 import {toast, useToast} from "@/components/ui/use-toast";
@@ -33,10 +34,13 @@ const TOAST_DURATION = 20000
 
 
 
-
+*/
 
 // @ts-ignore
 const Map = ({ children }) => {
+
+    return null
+/*
     const [activeDistrict, setActiveDistrict] = useState(0)
     const pathname = usePathname()
 
@@ -218,7 +222,6 @@ const Map = ({ children }) => {
 
         return (
             <>
-            {/* @ts-ignore */}
             <GeoJSON data={DistrictGeoJSON}
 
                      onEachFeature={(feature, layer) => {
@@ -314,6 +317,7 @@ const Map = ({ children }) => {
 
         </MapContainer>
     )
+ */
 }
 
 export default Map

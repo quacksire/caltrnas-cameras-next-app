@@ -1,8 +1,6 @@
-
-
-export async function GET(request: Request, { params }: { params: { district: number, thing: string } }) {
+export async function GET(request: Request, {params}: { params: { district: number, thing: string } }) {
     if (!params.district || !params.thing) {
-        return {status: 404};
+        return new Response('Missing parameters', {status: 400})
     }
 
     let district = params.district < 10 ? `0${params.district}` : `${params.district}`
@@ -18,7 +16,7 @@ export async function GET(request: Request, { params }: { params: { district: nu
             break;
         case "cms":
             let cms = []
-            let cms_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/cms/cmsStatusD${district}.json`, { next: { revalidate: 3600 } })
+            let cms_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/cms/cmsStatusD${district}.json`)
             let cms_data = await cms_res.json()
             cms.push(...cms_data.data)
             return new Response(JSON.stringify(cms.map(item => item?.cms)))
@@ -30,7 +28,7 @@ export async function GET(request: Request, { params }: { params: { district: nu
             }
             // follow the earlier structure
             let rwis = []
-            let rwis_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/rwis/rwisStatusD${district}.json`, { next: { revalidate: 3600 } })
+            let rwis_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/rwis/rwisStatusD${district}.json`, {next: {revalidate: 3600}})
             let rwis_data = await rwis_res.json()
             rwis.push(...rwis_data.data)
             return new Response(JSON.stringify(rwis.map(item => item?.rwis)))
@@ -43,7 +41,7 @@ export async function GET(request: Request, { params }: { params: { district: nu
 
             //follow the earlier structure
             let cc = []
-            let cc_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/cc/ccStatusD${district}.json`, { next: { revalidate: 3600 } })
+            let cc_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/cc/ccStatusD${district}.json`, {next: {revalidate: 3600}})
             let cc_data = await cc_res.json()
             cc.push(...cc_data.data)
             return new Response(JSON.stringify(cc.map(item => item?.cc)))
@@ -55,13 +53,12 @@ export async function GET(request: Request, { params }: { params: { district: nu
 
             //follow the earlier structure
             let tt = []
-            let tt_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/tt/ttStatusD${district}.json`, { next: { revalidate: 3600 } })
+            let tt_res = await fetch(`https://cwwp2.dot.ca.gov/data/d${params.district}/tt/ttStatusD${district}.json`, {next: {revalidate: 3600}})
             let tt_data = await tt_res.json()
             tt.push(...tt_data.data)
             return new Response(JSON.stringify(tt.map(item => item?.tt)))
         default:
             return new Response(JSON.stringify({error: "Invalid thing"}))
-
 
 
     }

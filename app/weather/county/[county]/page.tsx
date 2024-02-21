@@ -1,4 +1,3 @@
-
 import {counties} from "@/lib/lists";
 
 export async function generateStaticParams() {
@@ -7,7 +6,7 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function RoutePage({ params }: { params: { county: string }}) {
+export default function RoutePage({params}: { params: { county: string } }) {
     return (
         <div>
             <h1>{decodeURI(params.county)}</h1>

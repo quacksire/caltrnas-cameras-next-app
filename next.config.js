@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // use Server Actions
     experimental: {
-        serverActions: true,
+        serverActions: {
+            allowedOrigins: ['localhost', '*.caltranscameras.app', '*.vercel.app'],
+        },
     },
+
     images: {
         remotePatterns: [
             {

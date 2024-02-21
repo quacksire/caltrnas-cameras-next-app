@@ -2,6 +2,7 @@
 
 import {ScrollArea} from "@/components/ui/scroll-area";
 import CmsCard from "@/components/cards/cmsCard";
+import {getDataForSpecific} from "@/lib/fetchData";
 
 export default async function CmsGrid({district, route, county} : {district? : string, route? : string, county? : string}) {
     /**
@@ -19,56 +20,36 @@ export default async function CmsGrid({district, route, county} : {district? : s
      * 12	once a minute	https://cwwp2.dot.ca.gov/data/d12/cms/cmsStatusD12.json
      */
 
-
-    let cameras = []
-
-
-    if (!district) {
-        // fetch all of them and put them in a single array to be used in the grid
-        for (let i = 1; i <= 12; i++) {
-            // if the district has a single digit, add a 0 to the front
-            let district = i < 10 ? `0${i}` : i
-            let res = await fetch(`https://cwwp2.dot.ca.gov/data/d${i}/cms/cmsStatusD${district}.json`, { next: { revalidate: 3600 } })
-            let data = await res.json()
-            cameras.push(...data.data)
+    let error = false
+    let cmsSigns = []
+    try {
+        if (district) {
+            //cmsSigns = await fetch('/api/d/' + district + '/cms').then(res => res.json())
+            cmsSigns = await getDataForSpecific(Number(district), 'cms', `district-${district}`)
         }
-        //@ts-ignore
-    }
-
-    if (district) {
-        let formattedDistrict = parseInt(district) < 10 ? `0${district}` : district
-        let res = await fetch(`https://cwwp2.dot.ca.gov/data/d${district}/cms/cmsStatusD${formattedDistrict}.json`, { next: { revalidate: 3600 } })
-        let data = await res.json()
-        cameras.push(...data.data)
-    }
-
-
-
-
-    let cmsSigns = cameras.map(item => item?.cms)
-
-    console.log(cmsSigns.length)
-
-    //cmsSigns = cmsSigns.filter((item: any) => item.inService === true)
-
-    if (district) {
-        cmsSigns = cmsSigns.filter((item: any) => item.location.district === district)
-    }
-    if (route) {
-        cmsSigns = cmsSigns.filter((item: any) => item.location.route === route)
-    }
-    if (county) {
-        cmsSigns = cmsSigns.filter((item: any) => item.location.county === county)
+        if (route) {
+            //console.log(`/api/d/1/cctv/route-${route}`)
+            //cmsSigns = await fetch(`/api/d/1/cms/route-${route}`).then(res => res.json())
+            cmsSigns = await getDataForSpecific(1, 'cms', `route-${route}`)
+        }
+        if (county) {
+            //console.log(county)
+            //cmsSigns = await fetch(`/api/d/1/cms/county-${county}`).then(res => res.json())
+            cmsSigns = await getDataForSpecific(1, 'cms', `county-${county}`)
+        }
+    } catch (e) {
+        console.log(e)
+        error = true
     }
 
 
     return (
         <>
             <ScrollArea className={'h-full w-full'}>
-                <div className={'grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gow-end-auto m-2'}>
+                <div className={'grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gow-end-auto m-2'}>
                     {cmsSigns.map((cms: any, index: number) => {
                         return (
-                            <CmsCard cms={cms} key={index} hideBlank={true} />
+                            <CmsCard cms={cms} key={index} />
                         )
                     } )}
                 </div>

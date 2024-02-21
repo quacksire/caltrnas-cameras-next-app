@@ -1,4 +1,3 @@
-import MaxWidthWrapper from "@/components/max-width-wrapper";
 import TopContent from "@/components/TopContent";
 import {Suspense} from "react";
 
@@ -6,7 +5,7 @@ import {Suspense} from "react";
 // @ts-ignore
 export default function Layout({children}) {
     return (
-        <MaxWidthWrapper className="text-center align-middle h-full pt-20">
+        <div className="text-center align-middle h-full pt-20">
             <TopContent/>
             <Suspense fallback={<div>Loading</div>}>
                 <div className={'m-2'}>
@@ -14,6 +13,6 @@ export default function Layout({children}) {
                 </div>
 
             </Suspense>
-        </MaxWidthWrapper>
+        </div>
     )
 }

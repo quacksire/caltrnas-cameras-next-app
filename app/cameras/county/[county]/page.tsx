@@ -1,4 +1,3 @@
-
 import {counties} from "@/lib/lists";
 import CameraGrid from "@/components/rsc/cameraGrid";
 
@@ -8,10 +7,10 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function RoutePage({ params }: { params: { county: string }}) {
+export default async function RoutePage({params}: { params: { county: string } }) {
     return (
         <div>
-            <CameraGrid county={decodeURI(params.county)} />
+            <CameraGrid county={decodeURI(params.county)}/>
         </div>
     )
 }

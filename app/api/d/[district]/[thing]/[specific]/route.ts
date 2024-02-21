@@ -1,51 +1,40 @@
-import {urlToDisplay} from "@/lib/utils";
+import {fetchData} from "@/lib/fetchData";
 import {counties, countyDistricts} from "@/lib/lists";
 
-
-export async function GET(request: Request, { params }: { params: { district: string, thing: string, specific: string } }) {
+export async function GET(request: Request, {params}: {
+    params: { district: string, thing: string, specific: string }
+}) {
     if (!params.district || !params.thing || !params.specific) {
-       return { status: 404 };
+        return new Response('Missing parameters', {status: 400});
     }
-    let base_api_url = new URL(request.url).origin
 
+    const district = Number(params.district);
+    const thing = params.thing;
+    const specific = params.specific;
 
+    if (isNaN(district) || district < 1 || district > 12) {
+        return new Response('Invalid district', {status: 400});
+    }
 
-    const district = params.district
-    const thing = params.thing
-    const specific = params.specific
-
-    /**
-     * specific == `district-${district}` || `route-${route}` || `county-${county}`
-     */
-
+    let data = [];
 
     if (specific.startsWith('district-')) {
-        return await fetch(base_api_url +'/api/d/' + district + '/' + thing)
-    }
-    if (specific.startsWith('route-')) {
-        let list = []
-
-        // loop through all the districts and get the thing
+        data = await fetchData(district, thing);
+    } else if (specific.startsWith('route-')) {
+        const route = specific.replace('route-', '');
         for (let i = 1; i <= 12; i++) {
-            let district = i < 10 ? `0${i}` : i
-            let res = await fetch(`${base_api_url}/api/d/` + i + '/' + thing)
-            let data = await res.json()
-            list.push(...data)
+            const districtNumber = i < 10 ? `0${i}` : `${i}`;
+            const districtData = await fetchData(i, thing);
+            data.push(...districtData.filter((item: any) => item.location.route === route));
         }
-        return new Response(JSON.stringify(list.filter((item: any) => item.location.route === specific.replace('route-', ''))))
-    }
-    if (specific.startsWith('county-')) {
-        let c = urlToDisplay(specific.split('-')[1])
-        let districtOfCounty = countyDistricts[counties.findIndex((item: any) => item.name === c)]
-
-        let list = []
-        let district = districtOfCounty < 10 ? `0${districtOfCounty}` : districtOfCounty
-        let res = await fetch(base_api_url +'/api/d/' + district + '/' + thing)
-        let data = await res.json()
-        list.push(...data)
-
-        return new Response(JSON.stringify(list))
+    } else if (specific.startsWith('county-')) {
+        const countyName = specific.split('-')[1];
+        const districtOfCounty = countyDistricts[counties.findIndex((item: any) => item.name === countyName)];
+        const districtNumber = districtOfCounty < 10 ? `0${districtOfCounty}` : `${districtOfCounty}`;
+        data = await fetchData(Number(districtNumber), thing);
+    } else {
+        return new Response('Invalid specific parameter', {status: 400});
     }
 
-
+    return new Response(JSON.stringify(data));
 }
