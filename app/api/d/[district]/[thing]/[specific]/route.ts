@@ -1,6 +1,6 @@
 import {fetchData} from "@/lib/fetchData";
 import {counties, countyDistricts} from "@/lib/lists";
-
+export const runtime = 'edge';
 export async function GET(request: Request, {params}: {
     params: { district: string, thing: string, specific: string }
 }) {

@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 export async function GET(request: Request, {params}: { params: { district: number, thing: string } }) {
     if (!params.district || !params.thing) {
         return new Response('Missing parameters', {status: 400})

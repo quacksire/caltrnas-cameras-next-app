@@ -6,7 +6,7 @@ import {
     districtHqs,
     districtNames
 } from "@/lib/lists";
-
+export const runtime = 'edge';
 
 export async function GET(request: Request, {params}: { params: { district: string } }) {
     if (!params.district) {
