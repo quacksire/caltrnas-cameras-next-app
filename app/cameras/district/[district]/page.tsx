@@ -6,6 +6,7 @@ export async function generateStaticParams() {
         district: `${district}`
     }));
 }
+export const runtime = 'edge'
 
 export default async function RoutePage({params}: { params: { district: string } }) {
     return (

@@ -1,5 +1,6 @@
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import TopContent from "@/components/TopContent";
+export const runtime = 'edge'
 
 
 // @ts-ignore

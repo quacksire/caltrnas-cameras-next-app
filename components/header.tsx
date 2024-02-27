@@ -16,6 +16,8 @@ import {
     NavbarMenu,
     NavbarMenuItem
 } from "@nextui-org/navbar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 import {districtNames} from "@/lib/lists";
 
 export default function Header() {
@@ -27,18 +29,6 @@ export default function Header() {
     }, [pathname]);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-
-
-    //let path_up_until = pathname.split('/').slice(0, index).join('/')
-    //                                 return (
-    //                                     <div>
-    //                                         <Link href={path_up_until}>
-    //                                             <Button variant={'ghost'}> {path} </Button>
-    //                                         </Link>
-    //                                         {' / '}
-    //                                     </d
-
     return (
         <Navbar shouldHideOnScroll className={'w-screen mb-3'}>
                 <div className="flex flex-1 items-center justify-end space-x-4">
@@ -52,43 +42,41 @@ export default function Header() {
                             </Button>
                         </NavbarMenuToggle>
                         <NavbarContent className="hidden sm:flex" justify="start">
-                                <NavbarItem>
-                                    <Link href={"/"}>
-                                        <Button variant={'ghost'} size={'lg'}>  <TypographyMuted>
-                                            <HomeIcon className={'text-foreground'} />
-                                        </TypographyMuted> </Button>
-                                    </Link>
-                                </NavbarItem>
-
-                            {path.split('/').map((path, index) => {
-                                if (path === '/' || index == 0) return null
-
-                                let path_up_until_current = pathname.split('/').slice(0, index + 1).join('/')
-
-                                let pathName = urlToDisplay(path)
-
-                                if (pathName === 'Cms') pathName = 'CMS'
-
-
-
-
-
-                                return (
-                                    <NavbarItem key={`${path}-${index}`}>
-                                        <Button variant={'ghost'} disabled className={'pointer-events-none w-min'} key={path_up_until_current}> <TypographyMuted>
-                                            {'/'}
-                                        </TypographyMuted> </Button>
-                                        <Link href={path_up_until_current} key={`/${path_up_until_current}/`}> {/* Capitalize the first letter of the path*/}
-                                            <Button variant={'ghost'}>
-                                                <TypographyMuted>
-                                                    {pathName}
-                                                </TypographyMuted>
-                                            </Button>
+                            <Tabs defaultValue="/" className="w-[400px]" value={pathname}>
+                                <TabsList>
+                                    <TabsTrigger value="/" key={'/'}>
+                                        <Link href={'/'}> {/* Capitalize the first letter of the path*/}
+                                            <HomeIcon />
                                         </Link>
-                                    </NavbarItem>
+                                    </TabsTrigger>
+                                    {path.split('/').map((path, index) => {
+                                        if (path === '/') return null
+                                        if (index == 0) return null
 
-                                )
-                            })}
+                                        let path_up_until_current = pathname.split('/').slice(0, index + 1).join('/')
+
+                                        let pathName = urlToDisplay(path)
+
+                                        if (pathName === 'Cms') pathName = 'CMS'
+
+
+
+
+
+                                        return (
+                                            <TabsTrigger value={`${path_up_until_current}`}>
+                                                <Link href={path_up_until_current} key={`/${path_up_until_current}/`}> {/* Capitalize the first letter of the path*/}
+                                                        {pathName}
+                                                </Link>
+                                            </TabsTrigger>
+                                        )
+                                    })}
+                                </TabsList>
+                            </Tabs>
+
+
+
+
                         </NavbarContent>
                         <NavbarMenu>
                             <NavbarMenuItem className={'w-full'}>
@@ -98,32 +86,37 @@ export default function Header() {
                                 </TypographyMuted> </Button>
                             </Link>
                             </NavbarMenuItem>
-                            {path.split('/').map((path, index) => {
-                                if (path === '/' || index == 0) return null
-
-                                let path_up_until_current = pathname.split('/').slice(0, index + 1).join('/')
-
-                                let pathName = urlToDisplay(path)
-
-                                if (pathName === 'Cms') pathName = 'CMS'
-
-
-
-
-
-                                return (
-                                    <NavbarMenuItem key={path_up_until_current}>
-                                        <Link href={path_up_until_current} key={`/${path_up_until_current}/`}> {/* Capitalize the first letter of the path*/}
-                                            <Button variant={'ghost'} size={'lg'}>
-                                                <TypographyMuted>
-                                                    {pathName}
-                                                </TypographyMuted>
-                                            </Button>
+                            <Tabs defaultValue="/" className="w-[400px]" value={pathname}>
+                                <TabsList>
+                                    <TabsTrigger value="/" key={'/'}>
+                                        <Link href={'/'}> {/* Capitalize the first letter of the path*/}
+                                            <HomeIcon />
                                         </Link>
-                                    </NavbarMenuItem>
+                                    </TabsTrigger>
+                                    {path.split('/').map((path, index) => {
+                                        if (path === '/') return null
+                                        if (index == 0) return null
 
-                                )
-                            })}
+                                        let path_up_until_current = pathname.split('/').slice(0, index + 1).join('/')
+
+                                        let pathName = urlToDisplay(path)
+
+                                        if (pathName === 'Cms') pathName = 'CMS'
+
+
+
+
+
+                                        return (
+                                            <TabsTrigger value={`${path_up_until_current}`}>
+                                                <Link href={path_up_until_current} key={`/${path_up_until_current}/`}> {/* Capitalize the first letter of the path*/}
+                                                    {pathName}
+                                                </Link>
+                                            </TabsTrigger>
+                                        )
+                                    })}
+                                </TabsList>
+                            </Tabs>
                         </NavbarMenu>
 
                     </nav>

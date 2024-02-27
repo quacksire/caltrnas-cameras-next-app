@@ -7,6 +7,7 @@ export async function generateStaticParams() {
         county: `${String(county).toLowerCase()}`
     }));
 }
+export const runtime = 'edge'
 
 export default function RoutePage({params}: { params: { county: string } }) {
     return (

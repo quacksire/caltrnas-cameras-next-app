@@ -1,5 +1,5 @@
 import CountyPicker from "@/components/pickers/county";
-
+export const runtime = 'edge'
 
 export default function ChooseCounty({params}: { params: { choice: string } }) {
 

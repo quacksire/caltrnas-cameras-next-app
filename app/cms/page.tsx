@@ -1,5 +1,5 @@
 import {ChoiceCardTemplate} from "@/components/home/choices";
-
+export const runtime = 'edge'
 export default async function Home() {
     return (
         <div className={"grid grid-cols-1 lg:grid-cols-3 h-full w-full justify-center"}>

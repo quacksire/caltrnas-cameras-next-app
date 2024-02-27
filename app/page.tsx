@@ -2,6 +2,7 @@ import {TypographyH1, TypographyLead} from "@/components/ui/typography";
 import Balancer from "react-wrap-balancer";
 import MaxWidthWrapper from "@/components/max-width-wrapper";
 import Choices from "@/components/home/choices";
+export const runtime = 'edge'
 
 export default function Home() {
     return (

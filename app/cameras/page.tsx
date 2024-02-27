@@ -1,6 +1,7 @@
 import {ChoiceCardTemplate} from "@/components/home/choices";
 import {choicesArray} from "@/lib/lists";
 
+export const runtime = 'edge'
 export default async function Home() {
 
     let choiceArr = choicesArray

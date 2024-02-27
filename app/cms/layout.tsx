@@ -1,7 +1,7 @@
 import TopContent from "@/components/TopContent";
 import {Suspense} from "react";
 
-
+export const runtime = 'edge'
 // @ts-ignore
 export default function Layout({children}) {
     return (
