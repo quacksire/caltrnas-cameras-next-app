@@ -41,7 +41,7 @@ export default function Header() {
                                 <HomeIcon className={'text-foreground'} />
                             </Button>
                         </NavbarMenuToggle>
-                        <NavbarContent className="hidden sm:flex" justify="start">
+                        <NavbarContent className="flex" justify="start">
                             <Tabs defaultValue="/" className="w-[400px]" value={pathname}>
                                 <TabsList>
                                     <TabsTrigger value="/" key={'/'}>
