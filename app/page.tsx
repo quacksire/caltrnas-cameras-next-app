@@ -6,7 +6,7 @@ export const runtime = 'edge'
 
 export default function Home() {
     return (
-        <MaxWidthWrapper className="text-center align-middle h-full pt-20">
+        <MaxWidthWrapper className="text-center align-middle h-full pt-15">
             <div className="border-gray-300 m-5">
                 <TypographyH1 className={"m-3"}>
                     <Balancer>

@@ -2,9 +2,7 @@
 const nextConfig = {
     // use Server Actions
     experimental: {
-        serverActions: {
-            allowedOrigins: ['localhost', '*.caltranscameras.app', '*.vercel.app'],
-        },
+        serverActions: true
     },
 
 

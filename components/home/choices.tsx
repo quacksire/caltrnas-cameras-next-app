@@ -17,7 +17,7 @@ export function ChoiceCardTemplate({title = '', description = '', available = fa
         <Link href={(link && available) ? `/${link}` : '#'} about={available ? "" : "Coming Soon!"} draggable={false}
               className={'h-full w-full'}>
             <Card
-                className={available ? "w-50 h-min-20 m-2 cursor-pointer hover:shadow-md hover:bg-muted border-1 border-foreground-100" : "border-1 border-foreground-100 w-50 h-min-20 m-2 h-min cursor-not-allowed hover:shadow-md hover:bg-muted"}>
+                className={available ? "w-50 h-min-20 m-2 cursor-pointer shadow-md hover:bg-muted" : "border-1 border-foreground-100 w-50 h-min-20 m-2 h-min cursor-not-allowed hover:shadow-md hover:bg-muted"}>
                 <CardHeader>
                     {title && (
                         <CardTitle>

@@ -18,9 +18,8 @@ export default function CountyPicker({ prefix } : {prefix?: string}) {
         <div>
 
             <div className={'min-h-screen flex'}>
-                <div className={'flex-1 h-screen'}>
-                    <ScrollArea className={'h-full w-full m-5'}>
-                        <div className={'grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-6 m-2'}>
+                <ScrollArea className={'flex-1 h-full w-max mb-3'}>
+                        <div className={'grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5'}>
 
                         {counties.map((county, index) => {
 
@@ -32,10 +31,9 @@ export default function CountyPicker({ prefix } : {prefix?: string}) {
                             )
                         })}
                         </div>
-                    </ScrollArea>
 
 
-                </div>
+                </ScrollArea>
 
             </div>
         </div>

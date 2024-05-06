@@ -6,7 +6,7 @@ export const runtime = 'edge';
 // @ts-ignore
 export default function Layout({children}) {
     return (
-        <MaxWidthWrapper className="text-center align-middle h-full">
+        <MaxWidthWrapper className="text-center align-middle h-full pt-15">
             <TopContent/>
             <div className={'m-3'}>
                 {children}

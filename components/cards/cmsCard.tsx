@@ -30,9 +30,9 @@ export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: bo
 
 
     return (
-        <Card className={'max-w-330 h-100 m-3 xs:w-75'} key={cms.location.locationName}>
+        <Card className={'max-h-100 m-3 w-4/5'} key={cms.location.locationName}>
             <LocationHeader location={cms.location} />
-            <CardContent className={'flex justify-center w-full'}>
+            <CardContent className={'flex justify-center'}>
 
                 {cms.message.display != "Blank" && (
                     cms.message.phase1.phase1Line1 != "Not Reported" &&
@@ -40,7 +40,7 @@ export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: bo
                     cms.message.phase1.phase1Line3 != "Not Reported"
 
                 ) ? (
-                    <p className="py-10 w-96 bg-black border-black text-center leading-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-700 border-2 border-foreground-100">
+                    <p className="py-10 w-96 md:w-96 bg-black border-black text-center leading-5 font-medium text-yellow-500 rounded-2xl shadow-2xl shadow-gray-700 border-2 border-foreground-100">
                         {page === 0 ? cms.message.phase1.phase1Line1 || "‍" : cms.message.phase2.phase2Line1 || "‍"}
                         <br />
                         {page === 0 ? cms.message.phase1.phase1Line2 || "‍" : cms.message.phase2.phase2Line2 || "‍"}

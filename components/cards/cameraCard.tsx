@@ -3,6 +3,8 @@ import {useEffect, useRef, useState} from "react";
 import {Card, CardContent, CardFooter, CardHeader} from "@/components/ui/card";
 import LocationHeader from "@/components/cards/LocationHeader";
 import Image from 'next/image'
+import {Badge} from "@/components/ui/badge";
+import {MediaPlayer, MediaProvider} from "@vidstack/react";
 export default function CameraCard({ camera, hideBlank } : { camera : any, hideBlank?: boolean }) {
     const [historyScroll, setHistoryScroll] = useState(false)
     const [src, setSrc] = useState(camera.imageData.static.currentImageURL)
@@ -16,8 +18,10 @@ export default function CameraCard({ camera, hideBlank } : { camera : any, hideB
 
     useEffect(() => {
         if (camera.imageData.streamingVideoURL !== "") {
+            console.log(camera.imageData.streamingVideoURL)
             setHasLive(true)
         }
+
     }, [])
 
     useEffect(() => {
@@ -64,21 +68,31 @@ export default function CameraCard({ camera, hideBlank } : { camera : any, hideB
 
 
     return (
-        <Card className={'max-w-350 max-h-100 m-3 w-100'} key={camera.location.locationName}>
+        <Card className={'max-w-350 max-h-100 m-3 w-100'} key={crypto.randomUUID()}>
             <LocationHeader location={camera.location} />
             <CardContent className={'justify-center w-full'}>
                 {!hasLive && (
                     <div onMouseEnter={() => setHistoryScroll(true)} onMouseLeave={() => setHistoryScroll(false)}>
-                        <Image className={'rounded-md shadow-md shadow-gray-500 bg-foreground'} alt={camera.location.locationName} src={src} key={Date.now()} width={320} height={260} />
+                        <Image className={'rounded-md shadow-md shadow-gray-500 bg-foreground'}
+                               alt={camera.location.locationName} src={src} key={Date.now()} width={320} height={260}/>
                     </div>
                 )}
                 {hasLive && (
-                    <div>
-                        <Image className={'rounded-md shadow-md shadow-gray-500 bg-foreground'} alt={camera.location.locationName} src={`${src}?${Date.now()}`} key={Date.now()} width={320} height={260} />
-                    </div>
+                    <MediaPlayer streamType={'live'} controls muted autoPlay={true} className={"width-[320px] height=[260px] rounded-md shadow-md shadow-gray-500 bg-foreground"} src={camera.imageData.streamingVideoURL}>
+                        <MediaProvider/>
+                    </MediaPlayer>
+
                 )}
+                {/*
+                <div>
+                    <Image className={'rounded-md shadow-md shadow-gray-500 bg-foreground'}
+                           alt={camera.location.locationName} src={`${src}?${Date.now()}`} key={Date.now()} width={320}
+                           height={260}/>
+                </div>
+                */}
             </CardContent>
             <CardFooter>
+                {hasLive && <Badge>Live</Badge>}
                 Updated every {camera.imageData.static.currentImageUpdateFrequency} minutes
             </CardFooter>
         </Card>
