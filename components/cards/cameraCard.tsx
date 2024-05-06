@@ -78,7 +78,7 @@ export default function CameraCard({ camera, hideBlank } : { camera : any, hideB
                     </div>
                 )}
                 {hasLive && (
-                    <MediaPlayer streamType={'live'} controls muted autoPlay={true} className={"width-[320px] height=[260px] rounded-md shadow-md shadow-gray-500 bg-foreground"} src={camera.imageData.streamingVideoURL}>
+                    <MediaPlayer streamType={'ll-live'} controls muted autoPlay={true} className={"width-[320px] height=[260px] rounded-md shadow-md shadow-gray-500 bg-foreground"} src={camera.imageData.streamingVideoURL}>
                         <MediaProvider/>
                     </MediaPlayer>
 
