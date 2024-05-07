@@ -30,7 +30,7 @@ export default function CmsCard({ cms, hideBlank } : { cms : any, hideBlank?: bo
 
 
     return (
-        <Card className={'max-h-100 m-3 w-4/5'} key={cms.location.locationName}>
+        <Card className={'max-h-100 m-3 sm:w-4/5 max-w-330'} key={cms.location.locationName}>
             <LocationHeader location={cms.location} />
             <CardContent className={'flex justify-center'}>
 

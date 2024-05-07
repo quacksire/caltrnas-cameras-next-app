@@ -232,14 +232,14 @@ const choicesArray = [
         title: "Chain Control Signs",
         description: "The location and status of each Caltrans' chain control point located on the State Highway Network.",
         link: "chain-control",
-        available: true,
+        available: false,
         item: "signs"
     },
     {
         title: "Roadside Weather Information",
         description: "150 weather sensors in rural areas and roads with reoccurring weather.",
         link: "weather",
-        available: true,
+        available: false,
         item: 'weather'
     },
 

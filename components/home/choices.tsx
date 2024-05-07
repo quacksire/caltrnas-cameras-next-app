@@ -1,9 +1,10 @@
 'use client'
-import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 import {choicesArray} from "@/lib/lists";
 import React from "react";
+import {Badge} from "@/components/ui/badge";
 
 
 export function ChoiceCardTemplate({title = '', description = '', available = false, link = null}: {
@@ -17,7 +18,7 @@ export function ChoiceCardTemplate({title = '', description = '', available = fa
         <Link href={(link && available) ? `/${link}` : '#'} about={available ? "" : "Coming Soon!"} draggable={false}
               className={'h-full w-full'}>
             <Card
-                className={available ? "w-50 h-min-20 m-2 cursor-pointer shadow-md hover:bg-muted" : "border-1 border-foreground-100 w-50 h-min-20 m-2 h-min cursor-not-allowed hover:shadow-md hover:bg-muted"}>
+                className={available ? "w-50 h-min-25 m-2 cursor-pointer shadow-md hover:bg-muted" : "border-1 border-foreground-100 w-50 h-min-20 m-2 h-min cursor-not-allowed hover:shadow-md hover:bg-muted"}>
                 <CardHeader>
                     {title && (
                         <CardTitle>
@@ -25,6 +26,11 @@ export function ChoiceCardTemplate({title = '', description = '', available = fa
                                 {title}
                             </Balancer>
                         </CardTitle>
+                    )}
+                    {!available && (
+                        <Balancer className={"select-none"}>
+                            <Badge  variant={'outline'}>Coming Soon!</Badge>
+                        </Balancer>
                     )}
                     {description && (
                         <CardDescription>
