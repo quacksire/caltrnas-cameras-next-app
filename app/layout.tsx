@@ -1,4 +1,5 @@
 import './globals.css'
+import localFont from "next/font/local";
 import {Inter} from 'next/font/google'
 import {ThemeProvider} from "@/components/theme-provider";
 import Header from "@/components/header";
@@ -23,16 +24,19 @@ export const viewport: Viewport = {
     // interactiveWidget: 'resizes-visual',
 }
 
+const departureMono = localFont({
+    src: "./fonts/DepartureMono-Regular.woff",
+    variable: "--font-departure-mono",
+});
+
 export default function DefaultLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <body className={'relative flex min-h-screen flex-col bg-grid-small-black/[0.2]'}>
+        <body className={`relative flex min-h-screen flex-col bg-grid-small-black/[0.2] font-[family-name:var(--font-departure-mono)] ${departureMono.variable} `}>
         <Providers>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                 <Header/>
-                <section>
                     {children}
-                </section>
                 <Toaster/>
             </ThemeProvider>
         </Providers>

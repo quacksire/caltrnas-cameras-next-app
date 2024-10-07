@@ -54,8 +54,6 @@ export default async function CmsGrid({district, route, county} : {district? : s
                     } )}
                 </div>
             </div>
-
         </>
-
     )
 }
